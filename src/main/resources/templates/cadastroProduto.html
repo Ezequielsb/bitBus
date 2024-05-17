@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cadastro de Produto</title>
+</head>
+<body>
+    <h1>Cadastro de Produto</h1>
+    <form action="#" th:action="@{/cadastrarProduto}" th:object="${produto}" method="post">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" th:field="*{nome}" />
+        <button type="submit">Cadastrar</button>
+    </form>
+</body>
+</html>
