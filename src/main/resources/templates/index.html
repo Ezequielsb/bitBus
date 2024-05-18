@@ -1,12 +1,26 @@
 <!doctype html>
-<html lang="pt-br">
+<html lang="pt-br"
+	  xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layout}">
 <head>
     <title>Índice</title>
 </head>
-<body>
+<body layout:fragment="body">
     <main>
-        <p>bitBus</p>
-        <a th:href="@{cadastroProduto}" class="btn btn-primary">Cadastrar Produto</a>
+        <table class="tableProdutos" border="1">
+        <thead>
+			<tr>
+				<th>Código</th>
+				<th>Nome</th>
+				<th>Ano</th>
+				<th>Quantidade</th>
+				<th>Dimensões</th>
+				<th>Informações</th>
+				<th>Link</th>
+			</tr>
+		</thead>
+        </table>
     </main>
 </body>
 </html>

@@ -1,14 +1,39 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
 <head>
-    <title>Cadastro de Produto</title>
+<title>Cadastro de Produto</title>
 </head>
-<body>
-    <h1>Cadastro de Produto</h1>
-    <form action="#" th:action="@{/cadastrarProduto}" th:object="${produto}" method="post">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" th:field="*{nome}" />
-        <button type="submit">Cadastrar</button>
-    </form>
+<body layout:fragment="body">
+	<main>
+		<section class="container-fluid d-flex justify-content-center"
+			style="max-width: 500px;">
+			<form action="/cadastroProduto" th:object="${produto}" method="post">
+				<label for="codigo" class="form-label">Código</label>
+				<input type="text" class="form-control" id="codigo" name="codigoProduto"/>
+				
+				<label for="nome" class="form-label">Nome</label>
+				<input type="text" class="form-control" id="nome" name="nome"/>
+				
+				<label for="ano" class="form-label">Ano</label>
+				<input type="number" class="form-control" id="ano" name="ano"/>
+				
+				<label for="quantidade" class="form-label">Quantidade</label>
+				<input type="text" class="form-control" id="quantidade" name="quantidade"/>
+				
+				<label for="dimensao" class="form-label">Dimensão</label>
+				<input type="text" class="form-control" id="dimensao" name="dimensao"/>
+				
+				<label for="informcoes" class="form-label">Informações</label>
+				<input type="text" class="form-control" id="informcoes" name="informcoes"/>
+						
+				<br/><br/>
+				<center>
+					<button type="submit" class="btn btn-primary">Enviar</button>
+				</center>
+			</form>
+		</section>
+	</main>
 </body>
 </html>
