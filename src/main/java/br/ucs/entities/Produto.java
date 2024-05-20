@@ -1,15 +1,13 @@
 package br.ucs.entities;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table
 public class Produto {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 	private String codigoProduto;
 	private String nome;
 	private Integer ano;
@@ -19,12 +17,6 @@ public class Produto {
 	private String caminhoImagem;
 	private String link;
 	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	public String getCodigoProduto() {
 		return codigoProduto;
 	}

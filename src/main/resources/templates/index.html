@@ -20,6 +20,17 @@
 				<th>Link</th>
 			</tr>
 		</thead>
+		<tbody>
+			<tr th:each="produto : ${produtos}">
+				<td th:text="${produto.codigoProduto}"></td>
+				<td th:text="${produto.nome}"></td>
+				<td th:text="${produto.ano}"></td>
+				<td th:text="${produto.quantidade}"></td>
+				<td th:text="${produto.dimensao}"></td>
+				<td th:text="${produto.informcoes}"></td>
+				<td th:text="${produto.link}"></td>
+			</tr>
+		</tbody>
         </table>
     </main>
 </body>
