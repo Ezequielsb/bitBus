@@ -24,11 +24,12 @@ public class ProdutoServices {
 				prodAux = getProdutoById(produto.getCodigoProduto());
 			} catch (Exception e) {
 			}
-			if (prodAux != null) {
+			if (prodAux == null) {
+				entityManager.merge(produto);
+			} else {
 				prodAux.setQuantidade(prodAux.getQuantidade() + produto.getQuantidade());
 				entityManager.merge(prodAux);
-			} else {
-				entityManager.persist(produto);
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -41,7 +42,29 @@ public class ProdutoServices {
 
 	public Produto getProdutoById(String id) {
 		try {
-			return repository.getById(id);
+			return repository.buscaPorCodigo(id);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public List<Produto> buscaProdutoPorCategoria(String categoria){
+		try {
+			return repository.buscaPorCategoria(categoria);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	public List<Produto> buscaProdutoPorNome(String nome){
+		try {
+			return repository.buscaPorNome(nome);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	public List<Produto> buscaProdutoPorAno(Integer ano){
+		try {
+			return repository.buscaPorAno(ano);
 		} catch (Exception e) {
 			return null;
 		}

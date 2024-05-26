@@ -1,77 +1,70 @@
 body {
-    font-family: Inter;
+	font-family: Inter;
 }
 
 #navItems li {
-    display: inline;
+	display: inline;
 }
 
 /*  FOOTER  */
-
 body {
-    min-height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-}
-
-/*  -----  */
-
-/*  MAP  */
-
-#mapHeader > select {
-    width: 33%;
+	min-height: 100vh;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
 }
 
 .tableProdutos {
-    border-collapse: collapse;
-    width: 70%;
-    margin: 0 auto;
-    text-align: center;
+	border-collapse: collapse;
+	width: 70%;
+	margin: 0 auto;
+	text-align: center;
 }
 
-.tableProdutos th, 
-.tableProdutos td {
-    border: 1px solid #dddddd;
-    text-align: center;
-    padding: 8px;
+.tableProdutos th, .tableProdutos td {
+	border: 1px solid #dddddd;
+	text-align: center;
+	padding: 8px;
 }
 
 .tableProdutos th {
-    background-color: #f2f2f2;
-    color: #333;
+	background-color: #f2f2f2;
+	color: #333;
 }
+
 .tableProdutos tr:nth-child(even) {
-    background-color: #f2f2f2;
+	background-color: #f2f2f2;
 }
+
 .tableProdutos tr:hover {
-    background-color: #ddd;
+	background-color: #ddd;
 }
- .tableProdutos {
-    font-family: Arial, sans-serif;
-    font-size: 14px;
+
+.tableProdutos {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
 }
 
 /* INDEX */
 .banner img {
-    width: 100%;
-    height: auto;
+	width: 100%;
+	height: auto;
 }
 
 .background {
-    width: 100%;
-    background-color: #dce6ec;
+	width: 100%;
+	background-color: #dce6ec;
 }
 
 button, a.btn {
-    color: #fff;
-    border: none;
-    padding: 0.5rem 1.5rem;
-    border-radius: 5px;
-    text-decoration: none;
+	color: #fff;
+	border: none;
+	padding: 0.5rem 1.5rem;
+	border-radius: 5px;
+	text-decoration: none;
 }
 
 .container-fluid .col-md-6 img {
-    display: block;
+	display: block;
 }
 
 .col-md-6 img {
@@ -79,12 +72,21 @@ button, a.btn {
 	margin: auto;
 }
 
-.row{
+.row {
 	width: 73%;
 	margin: auto;
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
 
+.select-container {
+	display: flex;
+	justify-content: center;
+}
+
+.select-container select {
+	width: 50%; /* Ajuste a largura conforme desejado */
+	max-width: 300px; /* Defina um valor máximo de largura */
+}
 
 /* FIM INDEX */

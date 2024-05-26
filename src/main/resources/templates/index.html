@@ -8,10 +8,42 @@
 </head>
 <body layout:fragment="body">
     <main>
-        <table class="tableProdutos" border="1">
+    
+	<form action="/" method="post" class="row justify-content-center">
+	    <div class="col-lg-6">
+	        <div class="select-container">
+	            <label for="categoriaSelect" class="form-label">Categoria</label>
+	            <select class="form-select" id="categoriaSelect" name="categoriaSelect">
+	                <option value="">Todas</option>
+	                <option value="Processadores e Memórias">Processadores e Memórias</option>
+	                <option value="Periféricos e Discos Removíveis">Periféricos e Discos Removíveis</option>
+	                <option value="Servidores (Tower/Físico)">Servidores (Tower/Físico)</option>
+	                <option value="Placas">Placas</option>
+	                <option value="Telefones">Telefones</option>
+	            </select>
+	
+	            <label for="codigo" class="form-label">Código</label>
+	            <input type="text" class="form-control" id="codigo" name="codigoProduto"/>
+	        </div>
+	    </div>
+	    
+	    <div class="col-lg-6">
+	        <div class="select-container">
+	            <label for="ano" class="form-label">Ano</label>
+	            <input type="number" class="form-control" id="ano" name="ano"/>
+	            
+	            <label for="nome" class="form-label">Nome</label>
+	            <input type="text" class="form-control" id="nome" name="nome"/>
+	            <button type="submit" class="btn btn-primary">Buscar</button>
+	        </div>
+	    </div>
+	</form>
+	<br/>
+        <table id="tabelaProdutos" class="tableProdutos" border="1">
         <thead>
 			<tr>
 				<th>Código</th>
+				<th>Categoria</th>
 				<th>Nome</th>
 				<th>Ano</th>
 				<th>Quantidade</th>
@@ -23,6 +55,7 @@
 		<tbody>
 			<tr th:each="produto : ${produtos}">
 				<td th:text="${produto.codigoProduto}"></td>
+				<td th:text="${produto.categoria}"></td>
 				<td th:text="${produto.nome}"></td>
 				<td th:text="${produto.ano}"></td>
 				<td th:text="${produto.quantidade}"></td>

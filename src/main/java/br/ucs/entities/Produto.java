@@ -16,6 +16,8 @@ public class Produto {
 	private String informcoes;
 	private String caminhoImagem;
 	private String link;
+	private String localArmazenamento;
+	private String categoria;
 	
 	public String getCodigoProduto() {
 		return codigoProduto;
@@ -64,5 +66,17 @@ public class Produto {
 	}
 	public void setLink(String link) {
 		this.link = link;
+	}
+	public String getLocalArmazenamento() {
+		return localArmazenamento;
+	}
+	public void setLocalArmazenamento(String localArmazenamento) {
+		this.localArmazenamento = localArmazenamento;
+	}
+	public String getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 }
