@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+<title>Cadastro de Visita</title>
+</head>
+<body layout:fragment="body">
+	<main>
+		<section class="container-fluid d-flex justify-content-center"
+			style="max-width: 500px;">
+			<form id="cadastroForm" action="/cadastroVisita" th:object="${visita}" method="post">
+				
+				<label for="local" class="form-label">Local</label>
+				<input type="text" class="form-control" id="local" name="local"/>
+				
+				<label for="responsavel" class="form-label">Pessoa Responsável</label>
+				<input type="text" class="form-control" id="responsavel" name="responsavel"/>
+				
+				<label for="dataInicio" class="form-label">Data Início</label>
+				<input type="date" class="form-control" id="dataInicio" name="dataInicio"/>
+				
+				<label for="dataFinal" class="form-label">Data Final</label>
+				<input type="date" class="form-control" id="dataFinal" name="dataFinal"/>
+						
+				<br/><br/>
+				<center>
+					<button type="submit" class="btn btn-primary">Enviar</button>
+				</center>
+			</form>
+		</section>
+	</main>
+</body>
+</html>
