@@ -10,11 +10,13 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 public class TabelaVisitasController {
-	private VisitaServices visitaServices;
+	private final VisitaServices visitaServices;
 	
 	@GetMapping("/tabelaVisitas")
 	public ModelAndView exibeVisitas() {
 		ModelAndView mv = new ModelAndView("tabelaVisitas");
+		mv.addObject("visitas", visitaServices.getAllVisits());
+
 		return mv;
 	}
 

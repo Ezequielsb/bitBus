@@ -14,19 +14,19 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class VisitaServices {
 	private final EntityManager entityManager;
-	private VisitaRepository repository;
-
-	public List<Visita> getAllVisits() {
-		return repository.findAll();
-	}
+	private final VisitaRepository repository;
 
 	@Transactional
 	public void salvarVisita(Visita visita) {
 		try {
+			System.out.println("entrou aqui");
 			entityManager.merge(visita);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	public List<Visita> getAllVisits() {
+		return repository.findAll();
 	}
 
 }

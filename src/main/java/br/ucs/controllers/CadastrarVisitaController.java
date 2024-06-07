@@ -1,8 +1,6 @@
 package br.ucs.controllers;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
@@ -15,14 +13,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.ucs.entities.Visita;
-import br.ucs.entities.Visitante;
 import br.ucs.services.VisitaServices;
 import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
 public class CadastrarVisitaController {
-	private VisitaServices visitaServices;
+	private final VisitaServices visitaServices;
 	
 	@GetMapping("/cadastroVisita")
 	public ModelAndView cadastroVisita() {
@@ -36,8 +33,6 @@ public class CadastrarVisitaController {
 	public ResponseEntity<Map<String, String>> salvarVisita(Model mv, Visita visita) {
 		Map<String, String> response = new HashMap<>();
 		try {
-			List<Visitante> visitantes = new ArrayList<>();
-			visita.setVisitantes(visitantes);
 			this.visitaServices.salvarVisita(visita);
 			response.put("status", "success");
 			response.put("message", "Visita cadastrada com sucesso!");
