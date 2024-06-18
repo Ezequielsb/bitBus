@@ -4,11 +4,14 @@
 	layout:decorate="~{layout}">
 <head>
 <title>Visitas</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-<HASH>" crossorigin="anonymous" />
 </head>
 
 <body layout:fragment="body">
-    <a th:href="@{/cadastroVisita}">Nova Visita</a>
 	<main>
+	<center>
+		<button id="novaVisita" class="btn btn-primary">Nova Visita</button>
+	</center>
 	<table id="tabelaVisitas" class="tableProdutos" border="1">
         <thead>
 			<tr>
@@ -17,7 +20,7 @@
 				<th>Data Início</th>
 				<th>Data Fim</th>
 				<th>Adicionar visitante</th>
-				<th>Visualizar Feedback</th>
+				<th>Visualizar Feedbacks</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -26,10 +29,46 @@
 				<td th:text="${visita.responsavel}"></td>
 				<td th:text="${#dates.format(visita.dataInicio, 'dd/MM/yyyy')}"></td>
 				<td th:text="${#dates.format(visita.dataFinal, 'dd/MM/yyyy')}"></td>
+				<td>
+				<button class="btn btn-primary"
+							th:attr="data-id=${visita.id}"
+							onclick="abrirJanelaVisitante(this.getAttribute('data-id'))">
+						<i class="fas fa-search"></i>
+				</button>
+				</td>
+				<td>
+				<button class="btn btn-primary"
+							th:attr="data-id=${visita.id}"
+							onclick="abrirJanelaFeedBack(this.getAttribute('data-id'))">
+						<i class="fas fa-search"></i>
+				</button>
+				</td>
 			</tr>
 		</tbody>
         </table>
 	</main>
 
-</body>
+	<script>
+	document.getElementById("novaVisita").addEventListener("click", function() {
+	    window.location.href = "/cadastroVisita";});
+	</script>
+	
+	<script>
+	function abrirJanelaVisitante(id) {
+	    var url = "/cadastroVisitante?id=" + id;
+	    
+	    // Abre uma nova janela
+	    window.open(url, "_blank", "width=800,height=600");
+	}
+	</script>
+	
+	<script>
+	function abrirJanelaFeedBack(id) {
+	    var url = "/tabelaVisitantes?id=" + id;
+	    
+	    // Abre uma nova janela
+	    window.open(url, "_blank", "width=1000,height=900");
+	}
+	</script>
+	</body>
 </html>

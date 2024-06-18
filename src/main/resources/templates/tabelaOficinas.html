@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+<title>Oficinas</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-<HASH>" crossorigin="anonymous" />
+</head>
+
+<body layout:fragment="body">
+	<main>
+	<center>
+		<button id="novaOficina" class="btn btn-primary">Nova Oficina</button>
+	</center>
+	<table id="tabelaOficinas" class="tableProdutos" border="1">
+        <thead>
+			<tr>
+				<th>Data</th>
+				<th>Horário</th>
+				<th>Local</th>
+				<th>Duração</th>
+				<th>Título</th>
+				<th>Ministrante</th>
+				<th>Currículo Ministrante</th>
+				<th>Resumo Palestra</th>
+				<th>Adicionar Visitantes</th>
+				<th>Visualizar Feedbacks</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="oficina : ${oficinas}">
+				<td th:text="${#dates.format(oficina.data, 'dd/MM/yyyy')}"></td>
+				<td th:text="${oficina.horario}"></td>
+				<td th:text="${oficina.local}"></td>
+				<td th:text="${oficina.duracao}"></td>
+				<td th:text="${oficina.titulo}"></td>
+				<td th:text="${oficina.ministrante}"></td>
+				<td>
+				<button class="btn btn-primary"
+							th:attr="data-curriculo=${oficina.curriculoPalestrante}"
+							onclick="openModalCurriculo(this.getAttribute('data-curriculo'))">
+						<i class="fas fa-search"></i>
+				</button>
+				</td>
+				<td>
+				<button class="btn btn-primary"
+							th:attr="data-resumo=${oficina.resumoPalestra}"
+							onclick="openModalResumo(this.getAttribute('data-resumo'))">
+						<i class="fas fa-search"></i>
+				</button>
+				</td>
+				<td>
+				<button class="btn btn-primary"
+							th:attr="data-id=${oficina.id}"
+							onclick="abrirJanelaVisitante(this.getAttribute('data-id'))">
+						<i class="fas fa-search"></i>
+				</button>
+				</td>
+				<td>
+				<button class="btn btn-primary"
+							th:attr="data-id=${oficina.id}"
+							onclick="abrirJanelaFeedBack(this.getAttribute('data-id'))">
+						<i class="fas fa-search"></i>
+				</button>
+				</td>
+			</tr>
+		</tbody>
+        </table>
+        
+     <div class="modal fade" id="curriculoModal" tabindex="-1" aria-labelledby="curriculoModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h1 class="modal-title fs-5" id="curriculoModalLabel"></h1>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+	      </div>
+	      <div class="modal-body">
+				<p id="curriculoModalContent"></p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<div class="modal fade" id="resumoModal" tabindex="-1" aria-labelledby="resumoModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h1 class="modal-title fs-5" id="resumoModalLabel"></h1>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+	      </div>
+	      <div class="modal-body">
+				<p id="resumoModalContent"></p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	</main>
+
+	<script>
+	document.getElementById("novaOficina").addEventListener("click", function() {
+	    window.location.href = "/cadastroOficina";});
+	</script>
+	
+	<script>
+	  	function openModalCurriculo(curriculo) {
+		    document.getElementById('curriculoModalContent').innerText = curriculo;
+		    var modal = new bootstrap.Modal(document.getElementById('curriculoModal'));
+		    modal.show();
+  		}
+	</script>
+	
+	<script>
+	  	function openModalResumo(resumo) {
+		    document.getElementById('resumoModalContent').innerText = resumo;
+		    var modal = new bootstrap.Modal(document.getElementById('resumoModal'));
+		    modal.show();
+  		}
+	</script>
+	
+	<script>
+		function abrirJanelaVisitante(id) {
+		    var url = "/cadVisitanteOficina?id=" + id;
+		    
+		    // Abre uma nova janela
+		    window.open(url, "_blank", "width=800,height=600");
+		}
+	</script>
+	
+	<script>
+	function abrirJanelaFeedBack(id) {
+	    var url = "/tabelaVisitantesOficina?id=" + id;
+	    
+	    // Abre uma nova janela
+	    window.open(url, "_blank", "width=1000,height=900");
+	}
+	</script>
+	</body>
+</html>

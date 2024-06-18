@@ -1,27 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout}">
+	layout:decorate="~{layoutVisitante}">
 <head>
-<title>Cadastro de Visita</title>
+<title>Cadastro de Visitante</title>
 </head>
 <body layout:fragment="body">
 	<main>
 		<section class="container-fluid d-flex justify-content-center"
 			style="max-width: 500px;">
-			<form id="cadastroForm" action="/cadastroVisita" th:object="${visita}" method="post">
+			<form id="cadastroForm" action="/cadastroVisitante" th:object="${visitante}" method="post">
 				
-				<label for="local" class="form-label">Local</label>
-				<input type="text" class="form-control" id="local" name="local"/>
+				<input type="hidden" th:field="*{visita.id}"/>	
+				<label for="nome" class="form-label">Nome</label>
+				<input type="text" class="form-control" id="nome" name="nome"/>
 				
-				<label for="responsavel" class="form-label">Pessoa Responsável</label>
-				<input type="text" class="form-control" id="responsavel" name="responsavel"/>
+				<label for="idade" class="form-label">Idade</label>
+				<input type="number" class="form-control" id="idade" name="idade"/>
 				
-				<label for="dataInicio" class="form-label">Data Início</label>
-				<input type="date" class="form-control" id="dataInicio" name="dataInicio"/>
+				<label for="escolaridade" class="form-label">Escolaridade</label>
+				<select class="form-select" id="escolaridade" name="escolaridade">
+				    <option value="Ensino Fundamental">Ensino Fundamental</option>
+				    <option value="Ensino Médio">Ensino Médio</option>
+				    <option value="Ensino Superior">Ensino Superior</option>
+				</select>
 				
-				<label for="dataFinal" class="form-label">Data Final</label>
-				<input type="date" class="form-control" id="dataFinal" name="dataFinal"/>
+				<label for="cidade" class="form-label">cidade</label>
+				<input type="text" class="form-control" id="cidade" name="cidade"/>
+				
+				<label for="email" class="form-label">E-mail</label>
+				<input type="text" class="form-control" id="email" name="email"/>
+				
+				<label for="opiniao" class="form-label">FeedBack</label>
+				<input type="text" class="form-control" id="opiniao" name="opiniao"/>
 						
 				<br/><br/>
 				<center>
@@ -30,7 +41,8 @@
 			</form>
 		</section>
 	</main>
-		<script>
+	
+	<script>
 	document.addEventListener('DOMContentLoaded', function() {
 	    var form = document.getElementById('cadastroForm');
 
@@ -48,7 +60,7 @@
 	        })
 	        .then(function(data) {
 	            if (data.status === 'success') {
-	            	alert("Visita cadastrada com sucesso!");
+	            	alert("Visitante cadastrado com sucesso!");
 	                // Limpar o formulário
 	                form.reset();
 	            } else {

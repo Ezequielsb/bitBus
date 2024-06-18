@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layoutVisitante}">
+<head>
+<title>Visitantes</title>
+</head>
+
+<body layout:fragment="body">
+	<main>
+	<table id="tabelaVisitanteOficina" class="tableVisitantes" border="1">
+        <thead>
+			<tr>
+				<th>Nome</th>
+				<th>E-mail</th>
+				<th>Idade</th>
+				<th>Cidade</th>
+				<th>Escolaridade</th>
+				<th>FeedBack</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="visitanteOficina : ${visitantes}">
+				<td th:text="${visitanteOficina.nome}"></td>
+				<td th:text="${visitanteOficina.email}"></td>
+				<td th:text="${visitanteOficina.idade}"></td>
+				<td th:text="${visitanteOficina.cidade}"></td>
+				<td th:text="${visitanteOficina.escolaridade}"></td>
+				<td th:text="${visitanteOficina.opiniao}"></td>
+			</tr>
+		</tbody>
+        </table>
+	</main>
+	</body>
+</html>

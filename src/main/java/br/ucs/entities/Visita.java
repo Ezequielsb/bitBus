@@ -25,7 +25,7 @@ public class Visita {
 	private Date dataInicio;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dataFinal;
-	@OneToMany(mappedBy = "visita", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "visita", cascade = CascadeType.ALL)
 	private List<Visitante> visitantes;
 
 	public Long getId() {

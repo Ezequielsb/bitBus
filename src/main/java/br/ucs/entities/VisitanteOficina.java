@@ -10,8 +10,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table
-public class Visitante {
-
+public class VisitanteOficina {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -22,8 +21,8 @@ public class Visitante {
 	private String opiniao;
 	private String email;
 	@ManyToOne
-    @JoinColumn(name = "visita_id")
-    private Visita visita;
+    @JoinColumn(name = "oficina_id")
+    private Oficina oficina;
 
 	public Long getId() {
 		return id;
@@ -73,14 +72,6 @@ public class Visitante {
 		this.opiniao = opiniao;
 	}
 
-	public Visita getVisita() {
-		return visita;
-	}
-
-	public void setVisita(Visita visita) {
-		this.visita = visita;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -88,4 +79,13 @@ public class Visitante {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public Oficina getOficina() {
+		return oficina;
+	}
+
+	public void setOficina(Oficina oficina) {
+		this.oficina = oficina;
+	}
+
 }

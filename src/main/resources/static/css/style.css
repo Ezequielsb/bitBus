@@ -12,6 +12,12 @@ body {
 	display: grid;
 	grid-template-rows: auto 1fr auto;
 }
+.tableVisitantes {
+	border-collapse: collapse;
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+}
 
 .tableProdutos {
 	border-collapse: collapse;

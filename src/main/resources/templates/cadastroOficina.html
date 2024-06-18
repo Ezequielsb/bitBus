@@ -3,25 +3,37 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout}">
 <head>
-<title>Cadastro de Visita</title>
+<title>Cadastro de Oficinas</title>
 </head>
 <body layout:fragment="body">
 	<main>
 		<section class="container-fluid d-flex justify-content-center"
 			style="max-width: 500px;">
-			<form id="cadastroForm" action="/cadastroVisita" th:object="${visita}" method="post">
+			<form id="cadastroForm" action="/cadastroOficina" th:object="${oficina}" method="post">
+				
+				<label for="titulo" class="form-label">Título</label>
+				<input type="text" class="form-control" id="titulo" name="titulo"/>
+				
+				<label for="ministrante" class="form-label">Ministrante</label>
+				<input type="text" class="form-control" id="ministrante" name="ministrante"/>
+				
+				<label for="data" class="form-label">Data</label>
+				<input type="date" class="form-control" id="data" name="data"/>
+				
+				<label for="horario" class="form-label">Horário</label>
+				<input type="time" class="form-control" id="horario" name="horario"/>
+				
+				<label for="duracao" class="form-label">Duração</label>
+				<input type="text" class="form-control" id="duracao" name="duracao"/>
 				
 				<label for="local" class="form-label">Local</label>
 				<input type="text" class="form-control" id="local" name="local"/>
 				
-				<label for="responsavel" class="form-label">Pessoa Responsável</label>
-				<input type="text" class="form-control" id="responsavel" name="responsavel"/>
+				<label for="curriculoPalestrante" class="form-label">Currículo Ministrante</label>
+				<input type="text" class="form-control" id="curriculoPalestrante" name="curriculoPalestrante" style="width: 100%;"/>
 				
-				<label for="dataInicio" class="form-label">Data Início</label>
-				<input type="date" class="form-control" id="dataInicio" name="dataInicio"/>
-				
-				<label for="dataFinal" class="form-label">Data Final</label>
-				<input type="date" class="form-control" id="dataFinal" name="dataFinal"/>
+				<label for="resumoPalestra" class="form-label">Resumo Palestra</label>
+				<input type="text" class="form-control" id="resumoPalestra" name="resumoPalestra" style="width: 100%;"/>
 						
 				<br/><br/>
 				<center>
@@ -30,6 +42,7 @@
 			</form>
 		</section>
 	</main>
+	
 		<script>
 	document.addEventListener('DOMContentLoaded', function() {
 	    var form = document.getElementById('cadastroForm');
@@ -48,7 +61,7 @@
 	        })
 	        .then(function(data) {
 	            if (data.status === 'success') {
-	            	alert("Visita cadastrada com sucesso!");
+	            	alert("Oficina cadastrada com sucesso!");
 	                // Limpar o formulário
 	                form.reset();
 	            } else {
