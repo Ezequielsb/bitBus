@@ -50,4 +50,15 @@ public class IndexController {
 		}
 		return mv;
 	}
+	
+	@PostMapping("/adicionarProduto")
+	public ModelAndView adicionarProduto(@RequestParam("codigoProduto") String codigoProduto) {
+	    ModelAndView mv = new ModelAndView();
+	    mv.setViewName("index");
+	    produtoServices.adicionaProduto(codigoProduto);
+	    List<Produto> produtos = produtoServices.getAllProducts();
+	    mv.addObject("produtos", produtos);
+
+	    return mv;
+	}
 }

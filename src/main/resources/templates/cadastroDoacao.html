@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+<title>Cadastro de Doações</title>
+</head>
+<body layout:fragment="body">
+	<main>
+		<section class="container-fluid d-flex justify-content-center"
+			style="max-width: 500px;">
+			<form id="cadastroForm" action="/cadastroDoacao" th:object="${doacao}" method="post">
+				<label for="tipoDoacao" class="form-label">Tipo de Doação</label>
+				<div class="form-group">
+				  <div class="form-check form-check-inline">
+				    <input class="form-check-input" type="radio" name="tipoDoacao" id="tipoDoacaoDinheiro" value="Dinheiro">
+				    <label class="form-check-label" for="tipoDoacaoDinheiro">
+				      Dinheiro
+				    </label>
+				  </div>
+				
+				  <div class="form-check form-check-inline">
+				    <input class="form-check-input" type="radio" name="tipoDoacao" id="tipoDoacaoProduto" value="Produto">
+				    <label class="form-check-label" for="tipoDoacaoProduto">
+				      Produto
+				    </label>
+				  </div>
+				
+				  <div class="form-check form-check-inline">
+				    <input class="form-check-input" type="radio" name="tipoDoacao" id="tipoDoacaoPatrocinio" value="Patrocinio">
+				    <label class="form-check-label" for="tipoDoacaoPatrocinio">
+				      Patrocínio
+				    </label>
+				  </div>
+				</div>
+				<br/>
+			  
+			  	<label for="nomeDoador" class="form-label">Nome Doador</label>
+				<input type="text" class="form-control" id="nomeDoador" name="nomeDoador"/>
+				
+				<label for="idadeDoador" class="form-label">Idade Doador</label>
+				<input type="number" class="form-control" id="idadeDoador" name="idadeDoador"/>
+				
+				<label for="cidadeDoador" class="form-label">Cidade Doador</label>
+				<input type="text" class="form-control" id="cidadeDoador" name="cidadeDoador"/>
+				
+			   <!-- Campos condicionais -->
+				  <div id="campoDinheiro" style="display: none;">
+				    <label for="valor" class="form-label">Valor da Doação</label>
+				    <input type="number" class="form-control" id="valor" name="valor">
+				  </div>
+				
+				  <div id="campoProduto" style="display: none;">
+				    <label for="selectProduto" class="form-label">Selecione o Produto</label>
+				    <select class="form-control" id="selectProduto" name="selectProduto">
+               			 <option th:each="produto : ${opcoesProduto}" th:value="${produto.codigoProduto}" th:text="${produto.nome}">Produto</option>
+            		</select>
+				  </div>
+				
+				  <div id="campoPatrocinio" style="display: none;">
+				    <label for="patrocinio" class="form-label">Descrição do Patrocínio</label>
+				    <input type="text" class="form-control" id="patrocinio" name="patrocinio">
+				  </div>
+				
+						
+				<br/><br/>
+				<center>
+					<button type="submit" class="btn btn-primary">Enviar</button>
+				</center>
+			</form>
+		</section>
+	</main>
+	
+	<script>
+	  // Selecionando os elementos relevantes
+	  var tipoDoacaoDinheiro = document.getElementById('tipoDoacaoDinheiro');
+	  var tipoDoacaoProduto = document.getElementById('tipoDoacaoProduto');
+	  var tipoDoacaoPatrocinio = document.getElementById('tipoDoacaoPatrocinio');
+	  var campoDinheiro = document.getElementById('campoDinheiro');
+	  var campoProduto = document.getElementById('campoProduto');
+	  var campoPatrocinio = document.getElementById('campoPatrocinio');
+	
+	  // Adicionando listeners para mudanças nos botões de rádio
+	  tipoDoacaoDinheiro.addEventListener('change', function() {
+	    if (tipoDoacaoDinheiro.checked) {
+	      campoDinheiro.style.display = 'block';
+	      campoProduto.style.display = 'none';
+	      campoPatrocinio.style.display = 'none';
+	    } else {
+	      campoDinheiro.style.display = 'none';
+	    }
+	  });
+	
+	  tipoDoacaoProduto.addEventListener('change', function() {
+	    if (tipoDoacaoProduto.checked) {
+	      campoProduto.style.display = 'block';
+	      campoDinheiro.style.display = 'none';
+	      campoPatrocinio.style.display = 'none';
+	    } else {
+	      campoProduto.style.display = 'none';
+	    }
+	  });
+	
+	  tipoDoacaoPatrocinio.addEventListener('change', function() {
+	    if (tipoDoacaoPatrocinio.checked) {
+	      campoPatrocinio.style.display = 'block';
+	      campoDinheiro.style.display = 'none';
+	      campoProduto.style.display = 'none';
+	    } else {
+	      campoPatrocinio.style.display = 'none';
+	    }
+	  });
+	</script>
+	
+	<script>
+	document.addEventListener('DOMContentLoaded', function() {
+	    var form = document.getElementById('cadastroForm');
+
+	    form.addEventListener('submit', function(event) {
+	        event.preventDefault();
+	        
+	        var formData = new FormData(form);
+	        
+	        fetch(form.action, {
+	            method: 'POST',
+	            body: formData
+	        })
+	        .then(function(response) {
+	            return response.json(); // Parse da resposta como JSON
+	        })
+	        .then(function(data) {
+	            if (data.status === 'success') {
+	            	alert("Doação cadastrada com sucesso!");
+	                // Limpar o formulário
+	                form.reset();
+	            } else {
+	                // Exibir alerta de erro
+	                alert(data.message);
+	            }
+	        })
+	        .catch(function(error) {
+	            // Exibir alerta de erro genérico
+	           alert("Erro ao processar a solicitação!");
+	        });
+	    });
+	});
+	</script>
+</body>
+</html>

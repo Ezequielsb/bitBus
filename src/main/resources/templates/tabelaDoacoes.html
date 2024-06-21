@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+<title>Doações</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-<HASH>" crossorigin="anonymous" />
+</head>
+
+<body layout:fragment="body">
+	<main>
+	<center>
+		<button id="novaDoacao" class="btn btn-primary">Nova Doação</button>
+	
+	<form id="filtroDoacaoForm" action="/tabelaDoacoes" method="post" class="row justify-content-center">
+	        <div class="form-group">
+	            <div class="form-check form-check-inline">
+	                <input class="form-check-input" type="radio" name="filtroDoacao" id="tipoDoacaoDinheiro" value="Dinheiro" onchange="submitForm()">
+	                <label class="form-check-label" for="tipoDoacaoDinheiro">
+	                    Dinheiro
+	                </label>
+	            </div>
+	
+	            <div class="form-check form-check-inline">
+	                <input class="form-check-input" type="radio" name="filtroDoacao" id="tipoDoacaoProduto" value="Produto" onchange="submitForm()">
+	                <label class="form-check-label" for="tipoDoacaoProduto">
+	                    Produto
+	                </label>
+	            </div>
+	
+	            <div class="form-check form-check-inline">
+	                <input class="form-check-input" type="radio" name="filtroDoacao" id="tipoDoacaoPatrocinio" value="Patrocínio" onchange="submitForm()">
+	                <label class="form-check-label" for="tipoDoacaoPatrocinio">
+	                    Patrocínio
+	                </label>
+	            </div>
+	        </div>
+	    </form>
+	 </center>
+	<br/>
+	<table id="tabelaVisitante" class="tableProdutos" border="1">
+        <thead>
+			<tr>
+				<th>Nome Doador</th>
+				<th>Idade</th>
+				<th>Cidade</th>
+				<th>Tipo Doação</th>
+				<th th:if="${filtroDoacao != null && filtroDoacao == 'Dinheiro'}">Valor</th>
+				<th th:if="${filtroDoacao != null && filtroDoacao == 'Produto'}">Produto</th>
+				<th th:if="${filtroDoacao != null && filtroDoacao == 'Patrocínio'}">Patrocínio</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="doacao : ${doacoes}">
+				<td th:text="${doacao.nomeDoador}"></td>
+				<td th:text="${doacao.idadeDoador}"></td>
+				<td th:text="${doacao.cidadeDoador}"></td>
+				<td th:text="${doacao.tipoDoacao}"></td>
+				<td th:if="${filtroDoacao != null && filtroDoacao == 'Dinheiro'}" th:text="${doacao.valor}"></td>
+				<td th:if="${filtroDoacao != null && filtroDoacao == 'Produto'}" th:text="${doacao.produto.nome}"></td>
+				<td th:if="${filtroDoacao != null && filtroDoacao == 'Patrocínio'}" th:text="${doacao.patrocinio}"></td>
+			</tr>
+		</tbody>
+        </table>
+	</main>
+	
+	<script>
+		document.getElementById("novaDoacao").addEventListener("click", function() {
+	    window.location.href = "/cadastroDoacao";});
+	</script>
+	
+	<script>
+		function submitForm() {
+	        document.getElementById('filtroDoacaoForm').submit();
+	    }
+	</script>
+	</body>
+</html>

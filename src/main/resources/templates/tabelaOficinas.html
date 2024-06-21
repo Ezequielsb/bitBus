@@ -12,6 +12,20 @@
 	<center>
 		<button id="novaOficina" class="btn btn-primary">Nova Oficina</button>
 	</center>
+	
+	<form action="/tabelaOficinas" method="post" class="row justify-content-center">
+		<div class="col-lg-6">
+	        <div class="select-container">
+	            <label for="local" class="form-label">Local</label>
+	            <input type="text" class="form-control" id="local" name="local"/>
+	            
+	            <label for="nome" class="form-label">Ministrante</label>
+	            <input type="text" class="form-control" id="nome" name="ministrante"/>
+	            <button type="submit" class="btn btn-primary">Buscar</button>
+	        </div>
+	    </div>
+	</form>
+	
 	<table id="tabelaOficinas" class="tableProdutos" border="1">
         <thead>
 			<tr>

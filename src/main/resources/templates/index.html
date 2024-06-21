@@ -5,6 +5,8 @@
 	  layout:decorate="~{layout}">
 <head>
     <title>Índice</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    
 </head>
 <body layout:fragment="body">
     <main>
@@ -50,6 +52,7 @@
 				<th>Dimensões</th>
 				<th>Informações</th>
 				<th>Link</th>
+				<th>Adicionar</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -62,22 +65,17 @@
 				<td th:text="${produto.dimensao}"></td>
 				<td th:text="${produto.informcoes}"></td>
 				<td th:text="${produto.link}"></td>
+				<td>
+                <form th:action="@{/adicionarProduto}" method="post">
+                    <input type="hidden" name="codigoProduto" th:value="${produto.codigoProduto}" />
+                    <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-plus"></i>
+                    </button>
+                </form>
+            </td>
 			</tr>
 		</tbody>
         </table>
     </main>
-    
-    <script>
-	  if ('serviceWorker' in navigator) {
-	    window.addEventListener('load', function() {
-	      navigator.serviceWorker.register('/service-worker.js')
-	        .then(function(registration) {
-	          console.log('Service Worker registrado com sucesso com escopo:', registration.scope);
-	        }, function(err) {
-	          console.log('Erro ao registrar Service Worker:', err);
-	        });
-	    });
-	  }
-	</script>
 </body>
 </html>

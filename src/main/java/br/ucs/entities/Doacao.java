@@ -18,6 +18,7 @@ public class Doacao {
 	private String nomeDoador;
 	private Integer idadeDoador;
 	private String cidadeDoador;
+	private String patrocinio;
 	
 	public Long getId() {
 		return id;
@@ -60,5 +61,11 @@ public class Doacao {
 	}
 	public void setCidadeDoador(String cidadeDoador) {
 		this.cidadeDoador = cidadeDoador;
+	}
+	public String getPatrocinio() {
+		return patrocinio;
+	}
+	public void setPatrocinio(String patrocinio) {
+		this.patrocinio = patrocinio;
 	}
 }

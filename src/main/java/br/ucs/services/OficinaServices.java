@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import br.ucs.entities.Oficina;
+import br.ucs.entities.Visita;
 import br.ucs.repositorios.OficinaRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -35,5 +36,13 @@ public class OficinaServices {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+	
+	public List<Oficina> buscaOficinasPorLocal(String local) {
+		return repository.buscaOficinasPorLocal(local);
+	}
+	
+	public List<Oficina> buscaOficinasPorMinistrante(String resp) {
+		return repository.buscaOficinasPorMinistrante(resp);
 	}
 }

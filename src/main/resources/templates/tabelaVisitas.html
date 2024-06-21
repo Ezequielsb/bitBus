@@ -12,6 +12,18 @@
 	<center>
 		<button id="novaVisita" class="btn btn-primary">Nova Visita</button>
 	</center>
+	<form action="/tabelaVisitas" method="post" class="row justify-content-center">
+		<div class="col-lg-6">
+	        <div class="select-container">
+	            <label for="local" class="form-label">Local</label>
+	            <input type="text" class="form-control" id="local" name="local"/>
+	            
+	            <label for="nome" class="form-label">Responsável</label>
+	            <input type="text" class="form-control" id="nome" name="responsavel"/>
+	            <button type="submit" class="btn btn-primary">Buscar</button>
+	        </div>
+	    </div>
+	</form>
 	<table id="tabelaVisitas" class="tableProdutos" border="1">
         <thead>
 			<tr>

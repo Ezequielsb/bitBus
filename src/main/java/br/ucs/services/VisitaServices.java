@@ -37,5 +37,13 @@ public class VisitaServices {
 			return null;
 		}
 	}
+	
+	public List<Visita> buscaVisitasPorLocal(String local) {
+		return repository.buscaVisitasPorLocal(local);
+	}
+	
+	public List<Visita> buscaVisitasPorResponsavel(String resp) {
+		return repository.buscaVisitasPorResponsavel(resp);
+	}
 
 }
