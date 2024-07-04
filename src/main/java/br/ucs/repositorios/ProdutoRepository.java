@@ -23,4 +23,7 @@ public interface ProdutoRepository extends JpaRepository<Produto, String> {
 	
 	@Query("SELECT i FROM Produto i WHERE i.ano = :ano")
 	List<Produto> buscaPorAno(@Param("ano") Integer ano);
+	
+	@Query("SELECT i FROM Produto i order by i.codigoProduto ASC")
+	List<Produto> buscarTodos();
 }

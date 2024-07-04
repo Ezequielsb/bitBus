@@ -37,7 +37,7 @@ public class ProdutoServices {
 	}
 
 	public List<Produto> getAllProducts() {
-		return repository.findAll();
+		return repository.buscarTodos();
 	}
 
 	public Produto getProdutoById(String id) {
